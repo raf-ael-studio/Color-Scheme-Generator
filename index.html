@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="index.css" />
+    <script src="index.js"></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="color-generator">
+    <div class="toolbar">
+      <input type="color" id="seed-color"/>
+      <select name="scheme mode" id="mode" multiple>
+        <option value="monochrome">Monochrome</option>
+        <option value="monochrome-dark">Monochrome-dark</option>
+        <option value="monochrome-light">Monochrome-light</option>
+        <option value="analogic">Analogic</option>
+        <option value="complement">Complement</option>
+        <option value="analogic-complement">Analogic-complement</option>
+        <option value="triad">Triad</option>
+      </select>
+      <button id="generate" onclick="generateRGB()">Generate Color Scheme</button>
+    </div>
+    <div class="color-container">
+      <div class="color-set">
+        <div class="color" id="color-1"></div>
+        <p class="hex-code">Hex Code</p>
+      </div>
+      <div class="color-set">
+        <div class="color" id="color-2"></div>
+        <p class="hex-code">Hex Code</p>
+      </div>
+      <div class="color-set">
+        <div class="color" id="color-3"></div>
+        <p class="hex-code">Hex Code</p>
+      </div>
+      <div class="color-set">
+        <div class="color" id="color-4"></div>
+        <p class="hex-code">Hex Code</p>
+      </div>
+      <div class="color-set">
+        <div class="color" id="color-5"></div>
+        <p class="hex-code">Hex Code</p>
+      </div>
+    </div>
+    </body>
+  </body>
+</html>

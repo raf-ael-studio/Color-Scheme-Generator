@@ -13,38 +13,56 @@
  *
  */
 
+document.addEventListener("DOMContentLoaded", function () {
+  let RGB;
+  const seedColor = document.getElementById("seed-color");
+  const color1 = document.getElementById("color-1");
+  const color2 = document.getElementById("color-2");
+  const color3 = document.getElementById("color-3");
+  const color4 = document.getElementById("color-4");
+  const color5 = document.getElementById("color-5");
 
-document.addEventListener("DOMContentLoaded", function() {
+  const colors = document.getElementsByClassName("color");
 
+  const generateButton = document.getElementById("generate");
+  const modeInput = document.getElementById("mode");
+  let hexCodes;
 
-let RGB;
-let fetchedColor;
-const seedColor = document.getElementById("seed-color");
-const color1 = document.getElementById("color-1");
-const generateButton = document.getElementById("generate");
+  function rgbToHex(r, g, b) {
+    let red = r.toString(16).padStart(2, "0");
+    let green = g.toString(16).padStart(2, "0");
+    let blue = b.toString(16).padStart(2, "0");
 
-function generateRGB() {
-  const red = Math.floor(Math.random() * 255);
-  const green = Math.floor(Math.random() * 255);
-  const blue = Math.floor(Math.random() * 255);
-  RGB = `rgb(${red},${green},${blue})`;
+    return "#" + red + green + blue; //
+  }
 
-  // seed color value must take HEX CODE
-  seedColor.style.value = RGB;
-  color1.style.backgroundColor = RGB;
-  fetch(`https://www.thecolorapi.com/id?rgb=${RGB}`)
-    .then((res) => res.json())
-    .then((data) => {
-      fetchedColor = data;
-      console.log(fetchedColor);
-    });
-}
+  function generateRGB() {
+    const red = Math.floor(Math.random() * 255);
+    const green = Math.floor(Math.random() * 255);
+    const blue = Math.floor(Math.random() * 255);
+    RGB = `rgb(${red},${green},${blue})`;
 
-generateButton.addEventListener("click", generateRGB);
+    let hex = rgbToHex(red, green, blue);
+    seedColor.value = hex;
 
+    console.log(modeInput.value);
 
+    // color1.style.backgroundColor = RGB;
+    fetch(
+      `https://www.thecolorapi.com/scheme?rgb=${RGB}&mode=${modeInput.value}`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        hexCodes = data.colors.map((color) => color.hex.value);
+        console.log(hexCodes);
+        for (let i = 0; i < hexCodes.length; i++) {
+          colors[i].style.backgroundColor = hexCodes[i];
+        }
+      });
+  }
 
-})
+  generateButton.addEventListener("click", generateRGB);
+});
 // fetch("https://www.thecolorapi.com/id?hex=000")
 // .then(res => res.json())
 // .then(data => console.log(data))

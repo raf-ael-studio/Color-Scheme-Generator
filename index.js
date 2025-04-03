@@ -16,13 +16,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   let RGB;
   const seedColor = document.getElementById("seed-color");
-  const color1 = document.getElementById("color-1");
-  const color2 = document.getElementById("color-2");
-  const color3 = document.getElementById("color-3");
-  const color4 = document.getElementById("color-4");
-  const color5 = document.getElementById("color-5");
-
   const colors = document.getElementsByClassName("color");
+  const colorsHex = document.getElementsByClassName("hex-code");
 
   const generateButton = document.getElementById("generate");
   const modeInput = document.getElementById("mode");
@@ -57,6 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(hexCodes);
         for (let i = 0; i < hexCodes.length; i++) {
           colors[i].style.backgroundColor = hexCodes[i];
+          colorsHex[i].textContent=hexCodes[i];
         }
       });
   }
